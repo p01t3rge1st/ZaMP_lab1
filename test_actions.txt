@@ -1,0 +1,15 @@
+// To jest przykładowy plik z opisem działań
+// Zawiera makra i komentarze
+
+#define MAX_SIZE 100
+#define OPERATION(x, y) ((x) + (y))
+
+/* Komentarz wieloliniowy
+   który powinien zostać usunięty
+   przez preprocesor */
+
+int main() {
+    int size = MAX_SIZE;  // rozmiar tablicy
+    int result = OPERATION(5, 3);  /* obliczenie */
+    return 0;
+}
