@@ -1,6 +1,6 @@
 #include <iostream>
-#include "inc/Preprocessor.hh"
-#include "inc/LibInterface.hh"
+#include "../inc/Preprocessor.hh"
+#include "../inc/LibInterface.hh"
 
 int main(int argc, char* argv[]) {
     if (argc < 2) {
