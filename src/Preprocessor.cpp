@@ -7,7 +7,7 @@
 #include <iostream>
 
 std::string RunPreprocessor(const std::string& inputFile) {
-    std::string cmd = "g++ -E -P " + inputFile + " 2>&1";
+    std::string cmd = "g++ -E -P -x c++ " + inputFile + " 2>&1";
     
     std::array<char, 128> buffer;
     std::string result;
