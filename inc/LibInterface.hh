@@ -2,6 +2,10 @@
 #include <string>
 #include <dlfcn.h>
 #include <iostream>
+
+// Forward declaration
+class AbstractInterp4Command;
+
 using CreateCmdFunc = AbstractInterp4Command* (*)();
 using GetCmdNameFunc = const char* (*)();
 class LibInterface {
