@@ -2,9 +2,7 @@
 #include <string>
 #include <dlfcn.h>
 #include <iostream>
-
-// Forward declaration
-class AbstractInterp4Command;
+#include "AbstractInterp4Command.hh"
 
 using CreateCmdFunc = AbstractInterp4Command* (*)();
 using GetCmdNameFunc = const char* (*)();
