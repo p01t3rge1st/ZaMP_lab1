@@ -9,17 +9,18 @@
 std::string RunPreprocessor(const std::string& inputFile) {
     std::string cmd = "g++ -E -P -x c++ " + inputFile + " 2>&1";
     
-    std::array<char, 128> buffer;
-    std::string result;
-
-    std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(cmd.c_str(), "r"), pclose);
+    FILE* pipe = popen(cmd.c_str(), "r");
     if (!pipe) {
-        throw std::runtime_error("popen() failed!");
+        return "";
     }
     
-    while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
-        result += buffer.data();
+    char buffer[128];
+    std::string result = "";
+    
+    while (fgets(buffer, 128, pipe) != NULL) {
+        result += buffer;
     }
     
+    pclose(pipe);
     return result;
 }

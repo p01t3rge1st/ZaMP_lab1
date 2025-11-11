@@ -3,26 +3,22 @@
 bool LibInterface::LoadPlugin() {
     handle = dlopen(libPath.c_str(), RTLD_LAZY);
     if (!handle) {
-        std::cerr << "dlopen failed for " << libPath << ": " << dlerror() << "\n";
+        std::cerr << "Nie moge zaladowac " << libPath << "\n";
         return false;
     }
-    dlerror();
-    CreateCmd = reinterpret_cast<CreateCmdFunc>(dlsym(handle, "CreateCmd"));
-    const char* dlsym_error = dlerror();
-    if (dlsym_error) {
-        std::cerr << "Cannot load symbol CreateCmd: " << dlsym_error << "\n";
-        dlclose(handle);
-        handle = nullptr;
+    
+    CreateCmd = (CreateCmdFunc)dlsym(handle, "CreateCmd");
+    if (!CreateCmd) {
+        std::cerr << "Blad: nie znalazlem CreateCmd\n";
         return false;
     }
-    GetCmdName = reinterpret_cast<GetCmdNameFunc>(dlsym(handle, "GetCmdName"));
-    dlsym_error = dlerror();
-    if (dlsym_error) {
-        std::cerr << "Cannot load symbol GetCmdName: " << dlsym_error << "\n";
-        dlclose(handle);
-        handle = nullptr;
+    
+    GetCmdName = (GetCmdNameFunc)dlsym(handle, "GetCmdName");
+    if (!GetCmdName) {
+        std::cerr << "Blad: nie znalazlem GetCmdName\n";
         return false;
     }
+    
     return true;
 }
 
