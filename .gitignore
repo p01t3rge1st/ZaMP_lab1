@@ -1,0 +1,8 @@
+*.o
+interpreter
+*.so
+*.a
+.vscode/
+*.swp
+*.swo
+*~
